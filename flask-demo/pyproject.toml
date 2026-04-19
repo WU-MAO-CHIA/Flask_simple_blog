@@ -7,3 +7,6 @@ requires-python = ">=3.13"
 dependencies = [
     "flask>=3.1.3",
 ]
+
+[tool.ruff.format]
+line-ending = "cr-lf"
