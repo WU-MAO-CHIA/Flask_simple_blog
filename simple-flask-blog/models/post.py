@@ -1,5 +1,5 @@
-from sqlalchemy import Integer, String, Text
-from sqlalchemy.orm import mapped_column
+from sqlalchemy import Integer, String, Text, ForeignKey
+from sqlalchemy.orm import mapped_column, relationship
 
 from config.settings import db
 
@@ -15,3 +15,7 @@ class Post(db.Model, TimeTrackable):
     id = mapped_column(Integer, primary_key=True)
     title = mapped_column(String, nullable=False)
     content = mapped_column(Text, nullable=True)
+    user_id = mapped_column(
+        Integer, ForeignKey("users.id", name="fk_posts_to_user_id"), nullable=True
+    )
+    auther = relationship("User", foreign_keys=user_id, back_populates="posts")

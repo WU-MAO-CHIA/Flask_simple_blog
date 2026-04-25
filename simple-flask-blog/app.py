@@ -1,16 +1,12 @@
-import os
 
-from dotenv import load_dotenv
-from flask import Flask
 from flask_migrate import Migrate
 
+from apps import app
 from apps.error.handlers import error_bp
 from apps.post.views import index as root_view
 from apps.post.views import post_bp
 from apps.user.views import user_bp
 from config.settings import db
-
-from apps import app
 
 app.add_url_rule("/", view_func=root_view, endpoint="root")
 app.register_blueprint(post_bp, url_prefix="/posts")
