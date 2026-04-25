@@ -7,9 +7,9 @@
   <p class="px-4 py-2 bg-gray-50">{{ post.content }}</p>
 </article>
 <footer class="flex gap-2 my-1">
-  <a href="{{ url_for('edit', id=post.id) }}" class="px-2 py-1 text-white bg-green-400 select-none">編輯</a>
+  <a href="{{ url_for("post.edit", id=post.id) }}" class="px-2 py-1 text-white bg-green-400 select-none">編輯</a>
 
-  <form action="{{ url_for('delete', id=post.id) }}" method="POST" onsubmit="return confirm('確認刪除？')">
+  <form action="{{ url_for("post.delete", id=post.id) }}" method="POST" onsubmit="return confirm('確認刪除？')">
     <button class="px-2 py-1 text-white bg-red-400 select-none">刪除</button>
   </form>
 </footer>
