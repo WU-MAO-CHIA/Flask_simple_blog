@@ -2,12 +2,14 @@ FROM python:3.13-slim
 
 WORKDIR /app
 
-RUN pip install uv --no-cache
+RUN pip install uv 
+COPY pyproject.toml uv.lock ./
+RUN uv pip install --system .
 
 COPY . .
 
-RUN uv sync 
-
 ENV FLASK_APP=app.py
 
-CMD ["uv", "run", "flask", "run", "--host=0.0.0.0", "--port=5000"]
+EXPOSE 8000
+
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "app:app"]
